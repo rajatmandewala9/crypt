@@ -3,6 +3,7 @@ package com.rajat.crypt;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -43,9 +44,14 @@ public class CryptController {
 		   Date currentDate = Calendar.getInstance(TimeZone.getDefault()).getTime();
 		   
 		   
+		   DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+		   formatter.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata")); // Or whatever IST is supposed to be
+		   //formatter.format(currentDate);
+		   
+		   
 		   
 		   //System.out.println(dtf.format(now)); 
-		return currentDate.toString();
+		return formatter.format(currentDate);
 	}
 
 }
