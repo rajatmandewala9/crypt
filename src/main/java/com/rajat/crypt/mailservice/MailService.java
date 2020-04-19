@@ -31,7 +31,8 @@ public class MailService {
 	//@Scheduled(cron = "*/5 * * * * *")
 	//@Scheduled(cron = " 0 32 22 ? * *")
 	//0 0/30 * * * ?
-	@Scheduled(cron = " 0 0/15 * * * ? ")
+	
+	//@Scheduled(cron = " 0 0/15 * * * ? ")
 	public void sendMailTest() {
 		System.out.println("aasas");
 		// logger.info("Current time is :: " + Calendar.getInstance().getTime());
