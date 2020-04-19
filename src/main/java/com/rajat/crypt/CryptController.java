@@ -3,26 +3,24 @@ package com.rajat.crypt;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.rajat.crypt.mailservice.MailService;
 
 @RestController
 @RequestMapping(value = "/crypt")
 public class CryptController {	
 	
+	@Autowired
+	private MailService mailService;
+	
 	@GetMapping
-	public String getTime() throws ParseException {
-		  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
-		   LocalDateTime now = LocalDateTime.now();  
+	public String getTime() throws ParseException { 
 		   
 		   
 //		   Calendar currentdate = Calendar.getInstance();
@@ -41,16 +39,11 @@ public class CryptController {
 //		   System.out.println("The date and time in :: " + obj.getDisplayName() + "is ::" + theResult);
 //		   System.out.println("The date and time in :: " + obj.getDisplayName() + "is ::" + strdate);
 		   
+		   mailService.sendMailToUser("abc");
 		   Date currentDate = Calendar.getInstance(TimeZone.getDefault()).getTime();
-		   
-		   
 		   DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-		   formatter.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata")); // Or whatever IST is supposed to be
-		   //formatter.format(currentDate);
-		   
-		   
-		   
-		   //System.out.println(dtf.format(now)); 
+		   formatter.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
+		  
 		return formatter.format(currentDate);
 	}
 
